@@ -1,7 +1,7 @@
 
 
 char * longestCommonPrefix(char ** strs, int strsSize){
-    int pos = 0, i = 0, minLen = 0;
+    int pos = 0, i = 0, maxLen = 0;
     char *res = NULL;
     
     if (strs == NULL || strsSize == 0)
@@ -10,45 +10,20 @@ char * longestCommonPrefix(char ** strs, int strsSize){
         res[0] = '\0';
         return res;
     }
-    
-    minLen = strlen(strs[0]);
-    for (i=0; i< strsSize; i++)
+    maxLen = strlen(strs[0]);
+    for(i=1; i< strsSize; i++)
     {
-        if (strs[i] == NULL)
-        {
-            res = malloc(1);
-            res[0] = '\0';
-            return res;
-        }
-        if (minLen > strlen(strs[i]))
-        {
-            minLen = strlen(strs[i]);
-        }
+        pos = 0;
+        while (pos < maxLen && strs[0][pos]!= '\0' && strs[i][pos]!='\0' && strs[i][pos] == strs[0][pos])
+            pos++;
+        maxLen = pos;
     }
-    
-    while(strs[0][pos] != '\0')
-    {
-        if (pos >= minLen)
-        {
-            break;
-        }
-        for(i=0; i< strsSize; i++)
-        {
-            if (strs[i][pos] != strs[0][pos])
-                break;
-        }
-        if (i < strsSize)
-        {
-            break;
-        }
-        pos++;
-    }
-    res = malloc(pos+1);
+    res = malloc(maxLen+1);
     if (NULL == res)
         return NULL;
-    if (pos > 0)
-        strncpy(res, strs[0], pos);
-    res[pos] = '\0';
+    if (maxLen > 0)
+        strncpy(res, strs[0], maxLen);
+    res[maxLen] = '\0';
     return res;
 }
 
