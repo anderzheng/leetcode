@@ -6,20 +6,23 @@ int strStr(char * haystack, char * needle){
         return -1;
     if (*needle == '\0')
         return 0;
-    while(haystack[pos])
+    while(haystack[i] && needle[j])
     {
-        j = 0;
-        i = pos;
-        while (haystack[i] && needle[j] && haystack[i] == needle[j])
+        if (haystack[i] == needle[j])
         {
             i++;
             j++;
         }
-        if (needle[j] == '\0')
-            return pos;
-        pos++;
+        else
+        {
+            pos ++;
+            i = pos;
+            j = 0;
+        }
     }
-    
+    if (needle[j] == '\0')
+        return pos;    
+
     return -1;
 }
 
