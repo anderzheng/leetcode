@@ -101,7 +101,7 @@ bool isSymmetric(struct TreeNode* root){
 
 #define  QUE_SIZE       1000
 
-/* iteratively method of BFS */
+/* iteratively method of BFS: passed 8ms */
 
 bool isSymmetric(struct TreeNode* root){
     
