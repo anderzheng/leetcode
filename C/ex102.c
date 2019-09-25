@@ -1,3 +1,5 @@
+/* passwd : 4ms */
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -22,7 +24,11 @@ int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes
     int **result = NULL;
     
     if (NULL == root)
+    {
+        *returnSize = 0;     /* notice: recurnSize is the drop */
         return NULL;
+    }
+
     
     result = (int**)malloc(sizeof(int*) * MAX_SIZE);
     if(NULL == result)
@@ -42,10 +48,12 @@ int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes
     while(tail != head)
     {
         cols = (tail - head + MAX_SIZE)%MAX_SIZE;
-        *returnColumnSizes[rows] = cols;
+        (*returnColumnSizes)[rows] = cols;      /* notic: need () for *returnColumnSizes */
         result[rows] = (int*)malloc(sizeof(int)*cols);
         if (NULL == result[rows])
         {
+            for(i=0; i< rows; i++)
+                free(result[i]);
             free(result);
             free(*returnColumnSizes);
             return NULL;
@@ -71,7 +79,7 @@ int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes
         }
         rows ++;
     }
-    *returnSize = rows;
+    *returnSize = rows;     /* notice: this is int*, not array */
     
     return result;
 }
