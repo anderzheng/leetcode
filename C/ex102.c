@@ -25,7 +25,7 @@ int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes
     
     if (NULL == root)
     {
-        *returnSize = 0;     /* notice: recurnSize is the drop */
+        *returnSize = 0;     /* notice: recurnSize must be setted */
         return NULL;
     }
 
