@@ -1,4 +1,42 @@
 
+/* using formula of Pascal's triangle, passwd : 0ms */
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* getRow(int rowIndex, int* returnSize){
+    int * dp = NULL;
+    int i=0, j=0;
+    long tmp = 0;
+    
+    if (rowIndex < 0)
+    {
+        *returnSize = 0;
+        return NULL;
+    }
+    
+    *returnSize = rowIndex+1;
+    dp = (int*)malloc(*returnSize*sizeof(int));
+    if (NULL == dp)
+    {
+        *returnSize = 0;
+        return NULL;
+    }
+
+    dp[0] = 1;
+    dp[rowIndex] = 1;
+    for(i=1;i<=(rowIndex+1)/2; i++)
+    {
+        /* dp[i] = C(i, k) */
+        tmp = (long)dp[i-1] * (rowIndex - i +1)/i;  /* notice: when rowIndex=30, int will over flow */
+        dp[i] = tmp;
+        dp[rowIndex - i] = tmp;
+    }
+    
+    return dp;
+}
+
+//-----------------------------------------------------------------------------------------------------------
 /* using dynamic programing, passed: 4ms */
 
 /**
