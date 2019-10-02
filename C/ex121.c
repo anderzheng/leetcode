@@ -1,4 +1,38 @@
 
+/* using dp method: passwd 4ms */
+
+int maxProfit(int* prices, int pricesSize){
+    int i=0, min = 0, maxDiff = 0;
+    
+    if (prices == NULL ||
+       pricesSize == 0)
+    {
+        return 0;
+    }
+       
+    min = prices[0];
+    for(i=1; i<pricesSize; i++)
+    {
+        if (prices[i] < min)
+        {
+            min = prices[i];    // today's profits is 0
+        }
+        else
+        {
+            if (maxDiff < prices[i] - min)
+            {
+                maxDiff = prices[i] - min;
+            }
+        }
+        
+    }
+    
+    
+    return maxDiff;
+}
+
+
+//-------------------------------------------------------------------------------------------------
 /* using dp method: passwd 12ms */
 
 int maxProfit(int* prices, int pricesSize){
