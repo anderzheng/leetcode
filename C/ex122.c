@@ -1,3 +1,24 @@
+/* using greedy algorithm , passed: 8ms*/
+
+int maxProfit(int* prices, int pricesSize){
+    int i = 0, sum = 0;
+    
+    if (NULL == prices ||
+       0 == pricesSize)
+        return 0;
+    
+    for(i=1; i<pricesSize; i++)
+    {
+        if(prices[i] > prices[i-1])
+        {
+            sum += prices[i] - prices[i-1];
+        }
+    }    
+    return sum;
+}
+
+
+//----------------------------------------------------------------------------------------
 /* using normal method,  passed: 8ms */
 
 int maxProfit(int* prices, int pricesSize){
