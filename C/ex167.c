@@ -1,3 +1,46 @@
+/* using two points, passed: 8ms */
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* twoSum(int* numbers, int numbersSize, int target, int* returnSize){
+    int * res = NULL;
+    int tmpSum = 0;
+    
+    *returnSize = 0;
+    res = (int*)malloc(sizeof(int)*2);
+    if(NULL == res)
+    {
+        return NULL;
+    }
+    res[0] = 0;
+    res[1] = numbersSize -1;
+    
+    while(res[0] < res[1])
+    {
+        tmpSum = numbers[res[0]]+numbers[res[1]];
+        if (tmpSum < target)
+        {
+            res[0]++;       // move left point
+        }
+        else if(tmpSum > target)
+        {
+            res[1]--;       //move right point
+        }
+        else
+        {
+            res[0]++;
+            res[1]++;
+            *returnSize = 2;
+            return res;
+        }
+    }
+    return NULL;
+}
+
+
+
+//-------------------------------------------------------------------------------------------
 /* using normal method: passed 12ms */
 
 /**
