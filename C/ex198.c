@@ -1,5 +1,35 @@
 
 
+/* using dp method, and using less space */
+/* passed: 0ms */
+int rob(int* nums, int numsSize){
+    int prevMax = 0, currMax = 0;
+    int i = 0, maxSum = 0;
+    
+    if (NULL == nums || numsSize < 1)
+        return 0;
+    
+    if (numsSize == 1)
+        return nums[0];
+       
+    prevMax = nums[0];
+    currMax = nums[0] > nums[1]? nums[0]:nums[1];
+    
+    for(i=2;i<numsSize;i++)
+    {
+        maxSum = prevMax + nums[i];
+        prevMax = currMax;
+        if (maxSum > currMax)
+        {
+            currMax = maxSum;
+        }
+    }
+       
+    return currMax;
+}
+
+
+//----------------------------------------------------------------------------
 /* using dp method, passed: 4ms */
 
 int rob(int* nums, int numsSize){
