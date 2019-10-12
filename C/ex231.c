@@ -1,4 +1,22 @@
 
+/* ver2 : passed 8ms */
+bool isPowerOfTwo(int n){
+    
+    while(n> 0)
+    {
+        if((n&1) == 1)
+        {
+            if (n == 1)
+                return true;
+            else
+                return false;
+        }
+        n>>=1;
+    }
+    
+    return false;
+}
+//---------------------------------------------------
 /* passed 4ms */
 bool isPowerOfTwo(int n){
     
