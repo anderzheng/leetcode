@@ -1,4 +1,10 @@
 
+/* ver3: passed 4ms */
+bool isPowerOfTwo(int n){
+    
+    return (n>0)&&((n&(n-1))==0);
+}
+//--------------------------------------
 /* ver2 : passed 8ms */
 bool isPowerOfTwo(int n){
     
