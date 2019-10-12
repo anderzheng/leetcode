@@ -1,4 +1,3 @@
-/* using iteratively: 0ms passed */
 
 /**
  * Definition for singly-linked list.
@@ -8,6 +7,22 @@
  * };
  */
 
+/* using recursively: passed 8ms */
+
+struct ListNode* reverseList(struct ListNode* head){
+    struct ListNode *ptr = NULL;
+    
+    if (head == NULL || head->next == NULL)
+        return head;
+    ptr = reverseList(head->next);
+    
+    head->next->next = head;        // reverse n and n+1 node
+    head->next = NULL;      // notice: will be circle if not set null
+    return ptr;
+}
+
+#if 0
+/* using iteratively: 0ms passed */
 
 struct ListNode* reverseList(struct ListNode* head){
     struct ListNode *prev = NULL, *next = NULL;
@@ -24,3 +39,4 @@ struct ListNode* reverseList(struct ListNode* head){
     head = prev;
     return head;
 }
+#endif
